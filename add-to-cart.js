@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.querySelector('form[action="/cart/add"]');
-    debugger;
 
     var addedToast = document.getElementById('liveToast');
     var toastBootstrap = bootstrap.Toast.getOrCreateInstance(addedToast);
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
+ 
         var product_id = form.querySelector('#product_id').value;
         var quantity = form.querySelector('#quantity').value;
-        var variant_id = form.querySelector('select[name="variant_id"]').value;
+        var variant_id = document.querySelector('.variantSwatches .variantSwatch.selected').dataset.variantId;
 
         let formData = {
             'items': [{
@@ -34,6 +34,19 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var variantSwatches = document.querySelectorAll('.variantSwatch');
+
+    variantSwatches.forEach(function(swatch) {
+        swatch.addEventListener('click', function() {
+            variantSwatches.forEach(function(swatch) {
+                swatch.classList.remove('selected');
+            });
+            swatch.classList.add('selected');
         });
     });
 });

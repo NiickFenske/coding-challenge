@@ -3,7 +3,7 @@
 
 {% if compare_at_price %}
     <del class="fs-4">${{ compare_at_price | number_format: 2 }}</del>
-    <span class="productPrice fs-2">${{  actual_price | number_format: 2 }}</span>  
+    <span class="productPrice fs-2 fw-semibold">${{  actual_price | number_format: 2 }}</span>  
 {% else %}
-    <span class="productPrice fs-2">${{ actual_price | number_format: 2 }}</span>
+    <span class="productPrice fs-2 fw-semibold">${{ actual_price | number_format: 2 }}</span>
 {% endif %}

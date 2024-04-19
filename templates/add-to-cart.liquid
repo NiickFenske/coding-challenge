@@ -2,13 +2,13 @@
     <input type="hidden" name="form_type" value="product">
     <input type="hidden" id="product_id" name="id" value="{{ product.variants.first.id }}" />
     <span class="variantSelectorText">Shoe Size: </span>
-    <select name="variant_id">    
+    <div class="variantSwatches pt-2">
         {% for variant in product.variants %}
-            {% if variant.available == true %}               
-                <option value="{{variant.id}}"> {{ variant.title }}</option>
+            {% if variant.available == true %}
+                <div class="variantSwatch d-flex justify-content-center rounded" data-variant-id="{{ variant.id }}">{{ variant.title }}</div>
             {% endif %}
         {% endfor %}
-    </select>
+    </div>
     <span class="quantitySelectorText">Quantity: </span>
     <input min="1" type="number" id="quantity" name="quantity" value="1"/>
     <div class="row mw-100 p-3">
