@@ -1,0 +1,17 @@
+<form action="/cart/add" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="form_type" value="product">
+    <input type="hidden" id="product_id" name="id" value="{{ product.variants.first.id }}" />
+    <span class="variantSelectorText">Shoe Size: </span>
+    <select name="variant_id">    
+        {% for variant in product.variants %}
+            {% if variant.available == true %}               
+                <option value="{{variant.id}}"> {{ variant.title }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <span class="quantitySelectorText">Quantity: </span>
+    <input min="1" type="number" id="quantity" name="quantity" value="1"/>
+    <div class="row mw-100 p-3">
+        <input type="submit" value="Add to Cart" class="btn btn-outline-primary">
+    </div>
+</form>
